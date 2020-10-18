@@ -43,10 +43,11 @@
 		</div>
 		<div class="divider"></div>
 
-		<form role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Buscar....">
-			</div>
+		<form action="buscar" method="POST">
+			@csrf
+				<input type="text" name="cadena" class="form-control" placeholder="Buscar....">
+			
+			<input type="submit" value="enviar">
 		</form>
 
 		<ul class="nav menu">
