@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    $categorias = [1=>'Electronica', 2=>'Electrodomesticos',3=>'Ropa'];
+
+    return view('welcome',compact('categorias') );
 });
 Route::get('autenticar', function() {
     return view('autenticar'); 
