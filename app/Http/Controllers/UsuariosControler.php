@@ -51,11 +51,13 @@ class UsuariosControler extends Controller
             return redirect()->back()->with('error','El password no esta bien confirmado');
 
         $imagen = $request->file('imagen');
-        $ruta_destino = public_path('fotos/');
-        $nombre_de_archivo = $imagen->getClientOriginalName();
-        $imagen->move($ruta_destino, $nombre_de_archivo);    
+        if(!is_null($imagen)){
+            $ruta_destino = public_path('fotos/');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
+            $imagen->move($ruta_destino, $nombre_de_archivo);        
+            $valores['imagen']=$nombre_de_archivo;
+        }
 
-        $valores['imagen']=$nombre_de_archivo;
         $valores['password']=Hash::make( $valores['password'] );
 
         $registro = new Usuario();

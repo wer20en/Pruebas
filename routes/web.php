@@ -15,20 +15,22 @@ Route::get('/', function () {
 
     return view('welcome',compact('categorias') );
 });
+
+
+Route::get('/salir', function() {
+    \Session::forget('usuario');
+    return view('autenticar');     
+});
+
 Route::get('autenticar', function() {
     return view('autenticar'); 
     //buscara el archivo 'autenticar.php' o 'autenticar.blade.php' dentro de resoureces/views
 });
 Route::get('tablero', function() {
-    return view('supervisor.tablero'); 
+    return view('tablero'); 
     //buscara el archivo 'tablero.php' o 'tablero.blade.php' dentro de resoureces/views/supervisor
 });
-Route::get('revisar', function() {
-    return view('encargado.revisar'); 
-});
-Route::get('cuenta', function() {
-    return view('cliente.cuenta'); 
-});
+
 Route::post('validar'        , 'AutenticarControler@validar');
 Route::get('listar_por_categoria/{categoria_id}','BuscarControler@listar_por');
 
