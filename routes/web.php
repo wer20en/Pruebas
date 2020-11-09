@@ -43,6 +43,8 @@ Route::delete('Categorias/{categoria}','CategoriasControler@destroy');
 Route::get('Categorias/{categoria}/edit','CategoriasControler@edit');
 //Route::resource('Categorias','CategoriasControler');
 
+Route::resource('Usuarios','UsuariosControler');
+
 
 
 
