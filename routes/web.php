@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     $categorias = [1=>'Electronica', 2=>'Electrodomesticos',3=>'Ropa'];
-
     return view('welcome',compact('categorias') );
 });
 
@@ -43,7 +42,6 @@ Route::get('Categorias/{categoria}','CategoriasControler@show');
 Route::put('Categorias/{categoria}','CategoriasControler@update');
 Route::delete('Categorias/{categoria}','CategoriasControler@destroy');
 Route::get('Categorias/{categoria}/edit','CategoriasControler@edit');
-//Route::resource('Categorias','CategoriasControler');
 
 Route::resource('Usuarios','UsuariosControler');
 

@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +17,6 @@
     $usuario = \Session::get('usuario');
     $usuario->refresh();
   @endphp
-
     <header class="navbar navbar-dark bg-dark navbar-expand flex-column flex-md-row bd-navbar">
       <a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Bootstrap">MERCADOITTG</a>
       <div class="navbar-nav-scroll">
@@ -73,16 +69,8 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"> <span class="navbar-toggler-icon"></span> </button>
     </div>
   </div>
-
   @endif
-
-    
-    
-
-
-
   <div class="container-fluid">
-
     @if (session('usuario'))
     @php
         $usuario = \Session::get('usuario');

@@ -6,9 +6,6 @@
 <li class="breadcrumb-item active" aria-current="page">Editar</li>
 @endsection
 
-@section('menu')
-@endsection
-
 @section('content')
 @if (session('error'))
 <div>
