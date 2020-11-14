@@ -48,6 +48,8 @@ Route::get('Categorias/{categoria}/edit','CategoriasControler@edit');
 
 Route::resource('Usuarios','UsuariosControler');
 
+Route::resource('Productos','ProductosControler');
+
 
 
 

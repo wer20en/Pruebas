@@ -110,7 +110,7 @@
               @break
           @case('Cliente')
             <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
-            <li class="dropdown-item"><a href="#">Propuestas</a></li>
+            <li class="dropdown-item"><a href="Productos">Productos</a></li>
             <li class="dropdown-item"><a href="#">Preguntas</a></li>
             <li class="dropdown-item"><a href="#">Estado de cuenta</a></li>
             @break
