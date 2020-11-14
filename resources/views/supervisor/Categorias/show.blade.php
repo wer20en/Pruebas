@@ -2,45 +2,47 @@
 
 @section('breadcumb')
 <li class="breadcrumb-item" ><a href="#">Home</a></li>
-<li class="breadcrumb-item"><a href="#">Categorias</a></li>
+<li class="breadcrumb-item"><a href="/Categorias">Categorias</a></li>
 <li class="breadcrumb-item active" aria-current="page">Crear</li>
-@endsection
-
-@section('menu')
-<li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
-<li class="dropdown-item active "><a class="text-warning" href="/Categorias">CATEGORIAS</a></li>
-<li class="dropdown-item"><a href="charts.html">Charts</a></li>
-<li class="dropdown-item"><a href="elements.html">UI Elements</a></li>
-<li><a href="panels.html">Panels</a></li>
-<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-    <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-    </a>
-    <ul class="children collapse" id="sub-item-1">
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
-        </a></li>
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-        </a></li>
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
-        </a></li>
-    </ul>
-</li>
-<li><a href="login.html">Logout</a></li>
 @endsection
 
 @section('content')
 
-    <div class="form-group">
-      <label for="formGroupExampleInput">Nombre de la sección:</label>
-      {{$seccion}}
+<div class="row">
+    <div class="col">Nombre de la categoria:</div>
+    <div class="col bg-light">{{$categoria->nombre}}</div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col">Descripcion de la categoria:</div>
+    <div class="col bg-light">{{$categoria->descripcion}}</div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col">Imagen:</div>
+    <div class="col bg-light"><img src="/secciones/{{$categoria->imagen}}" alt="" class="img-thumnail" width="200"></div>
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+<div class="row">
+    <div class="col">Activa:</div>
+    <div class="col bg-light">
+    @if ($categoria->activa == 1 )
+        SI
+    @else
+        NO
+    @endif    
     </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput2">Descripcion de la sección: </label>
-      Descripcion de {{$seccion}}
-    </div>
- 
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+
+
+
+
+
   
 
 @endsection

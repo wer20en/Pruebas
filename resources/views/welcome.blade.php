@@ -33,9 +33,21 @@
 @foreach ($categorias as $categoria)
       <div class="col-md-4 p-3">
         <div class="card box-shadow">
-          <img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+          <img class="card-img-top" 
+          @if (is_null($categoria->imagen))
+          src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"
+          @else
+          src="/secciones/{{$categoria->imagen}}" 
+          
+          @endif
+          
+          
+          >
           <div class="card-body">
-            <p class="card-text">Descripcion de la categoria n.</p>
+            <p class="card-text">
+              <p>{{$categoria->nombre}}</p>
+              <p>{{$categoria->descripcion}}</p>
+              
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <button type="button" class="btn btn-lg btn-block btn-outline-secondary">Ver productos...</button>   

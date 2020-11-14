@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Categoria;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Route::get('/', function () {
-    $categorias = [1=>'Electronica', 2=>'Electrodomesticos',3=>'Ropa'];
+    //$categorias = [1=>'Electronica', 2=>'Electrodomesticos',3=>'Ropa'];
+    $categorias = Categoria::all();
     return view('welcome',compact('categorias') );
 });
 
