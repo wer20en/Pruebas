@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ Route::get('/', function () {
 
 
 Route::get('/salir', function() {
-    \Session::forget('usuario');
+    Auth::logout();
     return view('autenticar');     
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Usuario;
@@ -20,7 +21,7 @@ class AutenticarControler extends Controller
             $password = $request->input('password');
             $password_bd = $usuario->password;
             if (Hash::check($password, $password_bd)) {
-                \Session::put('usuario' ,  $usuario );
+                Auth::login($usuario);
                 return  redirect('/tablero');
             }else
                 return redirect('/autenticar')->with('error', 'Usuario no registrado');
