@@ -3,7 +3,7 @@
 
 @section('breadcumb')
 <li class="breadcrumb-item" ><a href="#">Home</a></li>
-<li class="breadcrumb-item"><a href="/Usuarios">Usuarios</a></li>
+<li class="breadcrumb-item"><a href="/Productos">Productos</a></li>
 <li class="breadcrumb-item active" aria-current="page">Listar</li>
 @endsection
 
@@ -26,22 +26,24 @@
     </div>
 @endif
 
-<a href="Usuarios/create" class="btn btn-primary form-control" >Agregar Usuario</a>
+<a href="Productos/create" class="btn btn-primary form-control" >Proponer</a>
 <table border="1" class="table table-striped">
 <thead class="thead-dark">
-        <th>Nombre</th>
-        <th>Tipo</th>
+        <th>Producto</th>
+        <th>Precio</th>
         <th>Acciones</th>
 </thead>
 <tbody class="thead-light">
-    @forelse ($usuarios as $usuario)
-        <tr>
-            <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>
-            <td>{{$usuario->rol}}</td>
+    @forelse ($productos as $producto)
+        <tr @if ($producto->concesionado!=1)
+            class="text-muted"
+        @endif>
+            <td>{{$producto->nombre}} <img src="/prods/{{$producto->imagen}}" width="50" ></td>
+            <td>{{$producto->precio}}</td>
             <td>
-                <a href="/Usuarios/{{$usuario->id}}/edit" class="btn btn-success">Editar</a>
-                <a href="/Usuarios/{{$usuario->id}}" class="btn btn-warning">Mostrar</a>
-                <form action="/Usuarios/{{$usuario->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
+                <a href="/Productos/{{$producto->id}}/edit" class="btn btn-success">Editar</a>
+                <a href="/Productos/{{$producto->id}}" class="btn btn-warning">Mostrar</a>
+                <form action="/Productos/{{$producto->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -50,7 +52,7 @@
         </tr>
     @empty
         <tr>
-            <td colspan="3">Sin usuarios registrados</td>
+            <td colspan="3">Sin productos registrados</td>
         </tr>
     @endforelse
 </tbody> 

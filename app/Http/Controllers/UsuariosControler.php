@@ -24,7 +24,7 @@ class UsuariosControler extends Controller
         /*Aqui podemos hacer algunas cosas, como seleccionar que usuarios son los que cumplen cierta 
         condicion y los listaremos por ejemplo*/
 
-        return view('supervisor.Usuarios.index',compact('usuarios'));
+        return view('Usuarios.index',compact('usuarios'));
     }
 
 
@@ -35,7 +35,7 @@ class UsuariosControler extends Controller
      */
     public function create()
     {
-        return view('supervisor.Usuarios.create');
+        return view('Usuarios.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class UsuariosControler extends Controller
     public function show($id)
     {
         $usuario = Usuario::find($id);
-        return view('supervisor.Usuarios.show',compact('usuario'));
+        return view('Usuarios.show',compact('usuario'));
     }
 
     /**
@@ -89,7 +89,7 @@ class UsuariosControler extends Controller
     public function edit($id)
     {
         $usuario = Usuario::find($id);
-        return view('supervisor.Usuarios.edit',compact('usuario'));
+        return view('Usuarios.edit',compact('usuario'));
     }
 
     /**

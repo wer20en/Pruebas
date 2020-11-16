@@ -16,7 +16,7 @@ class CategoriasControler extends Controller
     public function index()
     {
         $categorias = Categoria::all();
-        return view('supervisor.Categorias.index',compact('categorias'));
+        return view('Categorias.index',compact('categorias'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoriasControler extends Controller
      */
     public function create()
     {
-        return view('supervisor.Categorias.create');
+        return view('Categorias.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoriasControler extends Controller
     public function show($id)
     {
         $categoria = Categoria::find($id);
-        return view('supervisor.Categorias.show',compact('categoria'));
+        return view('Categorias.show',compact('categoria'));
     }
 
     /**
@@ -75,7 +75,7 @@ class CategoriasControler extends Controller
     public function edit($id)
     {
         $categoria = Categoria::find($id);
-        return view('supervisor.Categorias.edit',compact('categoria'));
+        return view('Categorias.edit',compact('categoria'));
     }
 
     /**

@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-//  the "snake case", plural name of the class will be used
-//  protected $table = "categorias";
-public $timestamps = false;
-protected $fillable = ['nombre','descripcion','imagen','activa'];
-
+    public $timestamps = false;
+    protected $fillable = ['nombre','descripcion','imagen','activa'];
+    public function productos()
+    {
+        return $this->hasMany('App\Models\Producto');
+    }
 }

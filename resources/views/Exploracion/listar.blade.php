@@ -1,4 +1,9 @@
 @extends('layout.general')
+@section('breadcumb')
+<li class="breadcrumb-item" ><a href="/">INICIO</a></li>
+<li class="breadcrumb-item"><a href="/Productos">Productos</a></li>
+<li class="breadcrumb-item active">Categorias</li>
+@endsection
 
 
 @section('content')
@@ -30,33 +35,30 @@
 <div class="py-4 bg-light" >
   <div class="container">
     <div class="row">
-@foreach ($categorias as $categoria)
+        <h1>Categoria: {{$categoria->nombre}}</h1>
+    </div>
+    <div class="row">
+    @forelse ($categoria->productos as $producto)
       <div class="col-md-4 p-3">
         <div class="card box-shadow">
-          
-          <img class="card-img-top" 
-          @if (is_null($categoria->imagen))
-            src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg"
-          @else
-            src="/secciones/{{$categoria->imagen}}" 
-          @endif          
-          >
-          
+          <img class="card-img-top" src="/prods/{{$producto->imagen}}" >
           <div class="card-body">
             <p class="card-text">
-              <p>{{$categoria->nombre}}</p>
-              <p>{{$categoria->descripcion}}</p>
+              <p>{{$producto->nombre}}</p>
+              <p>{{$producto->descripcion}}</p>
               
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <a href="/listar_por_categoria/{{$categoria->id}}" class="btn btn-lg btn-block btn-outline-secondary">Ver productos...</a>   
-              </div>  
+                <button type="button" class="btn btn-lg btn-block btn-outline-secondary">...</button>   
+              </div>
             </div>
           </div>
         </div>
       </div>
-@endforeach
-    </div>
+    @empty
+        Esta categoria no tiene productos.    
+    @endforelse
+  </div>
   </div>
 </div>
 <footer class="text-muted py-5">

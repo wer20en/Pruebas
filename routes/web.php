@@ -34,7 +34,7 @@ Route::get('tablero', function() {
 });
 
 Route::post('validar'        , 'AutenticarControler@validar');
-Route::get('listar_por_categoria/{categoria_id}','BuscarControler@listar_por');
+Route::get('listar_por_categoria/{categoria_id}','ExploracionControler@listar_por');
 
 
 

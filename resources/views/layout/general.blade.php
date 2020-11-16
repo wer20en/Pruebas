@@ -41,7 +41,7 @@
   </div>
   <div class="navbar navbar-dark bg-dark">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center"><i class="fa d-inline fa-camera mr-2"></i><strong>MERCADOITTG</strong> </a>
+      <a href="/" class="navbar-brand d-flex align-items-center"><i class="fa d-inline fa-camera mr-2"></i><strong>MERCADOITTG</strong> </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"> <span class="navbar-toggler-icon"></span> </button>
     </div>
   </div>
@@ -98,7 +98,8 @@
             @case( 'Supervisor' )
               <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
               <li class="dropdown-item"><a href="/Categorias">Categorias</a></li>
-              <li class="dropdown-item"><a class="text-success" href="/Usuarios">Usuarios</a></li>
+              <li class="dropdown-item"><a href="/Usuarios">Usuarios</a></li>
+              <li class="dropdown-item"><a href="/Productos">Productos</a></li>
               @break
             @case('Encargado')
               <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
@@ -110,7 +111,7 @@
               @break
           @case('Cliente')
             <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
-            <li class="dropdown-item"><a href="Productos">Productos</a></li>
+            <li class="dropdown-item"><a href="/Productos">Productos</a></li>
             <li class="dropdown-item"><a href="#">Preguntas</a></li>
             <li class="dropdown-item"><a href="#">Estado de cuenta</a></li>
             @break

@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
-use App\Models\Usuario;
 
+use App\Models\Producto;
+use App\Models\Categoria;
 
 class ProductosControler extends Controller
 {
@@ -19,12 +20,13 @@ class ProductosControler extends Controller
     public function index()
     {
 
-        $usuarios = Usuario::all();
+//        $productos = Producto::all();
+        $productos = Producto::where('usuario_id',Auth::id())->get();
 
-        /*Aqui podemos hacer algunas cosas, como seleccionar que usuarios son los que cumplen cierta 
+        /*Aqui podemos hacer algunas cosas, como seleccionar que productos son los que cumplen cierta 
         condicion y los listaremos por ejemplo*/
 
-        return view('cliente.Productos.index',compact('usuarios'));
+        return view('Productos.index',compact('productos'));
     }
 
 
@@ -35,7 +37,8 @@ class ProductosControler extends Controller
      */
     public function create()
     {
-        return view('cliente.Productos.create');
+        $categorias = Categoria::all();
+        return view('Productos.create',compact('categorias'));
     }
 
     /**
@@ -47,24 +50,21 @@ class ProductosControler extends Controller
     public function store(Request $request)
     {
         $valores = $request->all();
-        if ($valores['password']!=$valores['password2'])
-            return redirect()->back()->with('error','El password no esta bien confirmado');
-
         $imagen = $request->file('imagen');
         if(!is_null($imagen)){
-            $ruta_destino = public_path('fotos/');
+            $ruta_destino = public_path('prods/');
             $nombre_de_archivo = $imagen->getClientOriginalName();
             $imagen->move($ruta_destino, $nombre_de_archivo);        
             $valores['imagen']=$nombre_de_archivo;
         }
 
-        $valores['password']=Hash::make( $valores['password'] );
+        $valores['usuario_id']=Auth::id();
 
-        $registro = new Usuario();
+        $registro = new Producto();
         $registro->fill($valores);
         $registro->save();
 
-        return redirect("/Usuarios")->with('mensaje','Usuario agregado correctamente');
+        return redirect("/Productos")->with('mensaje','Producto agregado correctamente');
         
     }
 
@@ -76,8 +76,8 @@ class ProductosControler extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::find($id);
-        return view('cliente.Productos.show',compact('usuario'));
+        $producto = Producto::find($id);
+        return view('Productos.show',compact('producto'));
     }
 
     /**
@@ -88,8 +88,9 @@ class ProductosControler extends Controller
      */
     public function edit($id)
     {
-        $usuario = Usuario::find($id);
-        return view('cliente.Productos.edit',compact('usuario'));
+        $producto = Producto::find($id);
+        $categorias = Categoria::all();
+        return view('Productos.edit',compact('producto','categorias'));
     }
 
     /**
@@ -102,16 +103,6 @@ class ProductosControler extends Controller
     public function update(Request $request, $id)
     {
         $valores = $request->all();
-        if ($valores['password']!=$valores['password2'])
-            return redirect()->back()->with('error','El password no esta bien confirmado');
-    
-
-        //si el password esta en blanco no lo actualizaremos
-        if(is_null($valores['password']))
-            unset($valores['password']);
-        else
-            $valores['password']=Hash::make( $valores['password'] );
-
         $imagen = $request->file('imagen');
         if(!is_null($imagen)){
             $ruta_destino = public_path('fotos/');
@@ -119,13 +110,13 @@ class ProductosControler extends Controller
             $imagen->move($ruta_destino, $nombre_de_archivo);        
             $valores['imagen']=$nombre_de_archivo;
         }
-
-        $registro = Usuario::find($id);
+        $valores['usuario_id']=Auth::id();
+        $registro = Producto::find($id);
         $registro->fill($valores);
         $registro->save();
 
 
-        return redirect("/Usuarios")->with('mensaje','Usuario modificado correctamente');
+        return redirect("/Productos")->with('mensaje','Producto modificado correctamente');
 
     }
    //    return;
@@ -140,11 +131,11 @@ class ProductosControler extends Controller
     {
          //podemos hacer validaciones para borrar o no
         try {
-            $registro = Usuario::find($id);
+            $registro = Producto::find($id);
             $registro->delete();
-            return redirect("/Usuarios")->with('mensaje','Usuario modificado correctamente');
+            return redirect("/Productos")->with('mensaje','Producto modificado correctamente');
         }catch (\Illuminate\Database\QueryException $e) {
-            return redirect("/Usuarios")->with('error',$e->getMessage());
+            return redirect("/Productos")->with('error',$e->getMessage());
         }
        
     }
