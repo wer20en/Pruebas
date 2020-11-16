@@ -16,16 +16,16 @@
       </div>
 
       <div class="col-12">
+          @guest
           <p class="lead text-muted">Buscar.
-
               <div class="form-check form-check-inline">
                   <form action="" method="post">
                       <input type="search" class="form-control" id="search-input" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox">
                   </form>
               </div>          
-  
-
           </p>
+          @endguest
+
       </div>
 
   </div>
