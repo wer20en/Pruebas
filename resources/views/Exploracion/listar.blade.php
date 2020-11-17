@@ -49,7 +49,10 @@
               
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-lg btn-block btn-outline-secondary">...</button>   
+                <a class="btn btn-lg btn-outline-secondary">Ver mas</a>   
+
+                <a class="btn btn-lg btn-outline-success"  >Comprar</a>   
+
               </div>
             </div>
           </div>
