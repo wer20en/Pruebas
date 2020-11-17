@@ -50,9 +50,9 @@
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
                 <a class="btn btn-lg btn-outline-secondary">Ver mas</a>   
-
-                <a class="btn btn-lg btn-outline-success"  >Comprar</a>   
-
+                @if (Gate::allows('comprar'))
+                  <a class="btn btn-lg btn-outline-success"  >Comprar</a>                                     
+                @endif
               </div>
             </div>
           </div>

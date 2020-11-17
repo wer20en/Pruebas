@@ -20,8 +20,8 @@ class ProductosControler extends Controller
     public function index()
     {
 
-//        $productos = Producto::all();
-        $productos = Producto::where('usuario_id',Auth::id())->get();
+        if(Auth::user()->rol=="Supervisor") $productos = Producto::all();
+        else $productos = Producto::where('usuario_id',Auth::id())->get();
 
         /*Aqui podemos hacer algunas cosas, como seleccionar que productos son los que cumplen cierta 
         condicion y los listaremos por ejemplo*/

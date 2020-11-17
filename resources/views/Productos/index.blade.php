@@ -43,11 +43,13 @@
             <td>
                 <a href="/Productos/{{$producto->id}}/edit" class="btn btn-success">Editar</a>
                 <a href="/Productos/{{$producto->id}}" class="btn btn-warning">Mostrar</a>
+                @can('delete', $producto)
                 <form action="/Productos/{{$producto->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>    
+                </form>
+                @endcan
             </td>
         </tr>
     @empty
