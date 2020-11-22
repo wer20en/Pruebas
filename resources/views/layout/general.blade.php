@@ -97,26 +97,25 @@
         {{-- @yield('menu') --}}
         @switch(Auth::user()->rol)
             @case( 'Supervisor' )
-              <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
+              <li class="dropdown-item"><a href="/tablero">Inicio</a></li>
               <li class="dropdown-item"><a href="/Categorias">Categorias</a></li>
               <li class="dropdown-item"><a href="/Usuarios">Usuarios</a></li>
               <li class="dropdown-item"><a href="/Productos">Productos</a></li>
               @break
             @case('Encargado')
-              <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
+              <li class="dropdown-item"><a href="/tablero">Inicio</a></li>
               <li class="dropdown-item"><a href="/Revisiones">Revisar</a></li>
               @break
             @case('Contador')
-              <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
+              <li class="dropdown-item"><a href="/tablero">Inicio</a></li>
               <li class="dropdown-item"><a href="#">Totalizar</a></li>
               @break
-          @case('Cliente')
-            <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
-            <li class="dropdown-item"><a href="/Productos">Productos</a></li>
-            <li class="dropdown-item"><a href="#">Preguntas</a></li>
-            <li class="dropdown-item"><a href="#">Estado de cuenta</a></li>
-            @break
-            
+            @case('Cliente')
+              <li class="dropdown-item"><a href="/tablero">Inicio</a></li>
+              <li class="dropdown-item"><a href="/Productos">Productos</a></li>
+              <li class="dropdown-item"><a href="#">Preguntas</a></li>
+              <li class="dropdown-item"><a href="#">Estado de cuenta</a></li>
+              @break            
         @endswitch
 
 			</ul>

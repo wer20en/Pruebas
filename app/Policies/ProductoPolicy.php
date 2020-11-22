@@ -10,6 +10,12 @@ class ProductoPolicy
 {
     use HandlesAuthorization;
 
+    public function cambiarPrecio(Usuario $usuario, Producto $producto)
+    {
+        return $producto->concesionado != 1;
+    }
+
+
     /**
      * Determine whether the user can view any models.
      *

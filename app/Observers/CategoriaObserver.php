@@ -28,8 +28,9 @@ class CategoriaObserver
     public function created(Categoria $categoria)
     {
         $regisro = Bitacora::create([
-            'quien' => $this->usuario,
-            'que' => 'Agrego categoria: ' . $categoria->toJson() 
+            'quien'  => $this->usuario,
+            'accion' => 'Agregó categoria',
+            'que'    => $categoria->toJson() 
         ]);        
     }
 
@@ -42,9 +43,10 @@ class CategoriaObserver
     public function updated(Categoria $categoria)
     {
         $regisro = Bitacora::create([
-            'quien' => $this->usuario,
-            'que' => 'Agrego categoria: ' . $categoria->toJson() 
-        ]);
+            'quien'  => $this->usuario,
+            'accion' => 'Actualizó categoria',
+            'que'    => $categoria->toJson() 
+        ]);        
     }
 
     /**
@@ -56,9 +58,10 @@ class CategoriaObserver
     public function deleted(Categoria $categoria)
     {
         $regisro = Bitacora::create([
-            'quien' => $this->usuario,
-            'que' => 'Agrego categoria: ' . $categoria->toJson() 
-        ]);
+            'quien'  => $this->usuario,
+            'accion' => 'Eliminó categoria',
+            'que'    => $categoria->toJson() 
+        ]);        
     }
 
     /**

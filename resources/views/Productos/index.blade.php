@@ -27,7 +27,6 @@
 @endif
 
 @can('create', App\Models\Producto::class)
-{{-- @can('create', 'App\Models\Producto') --}}
    <a href="Productos/create" class="btn btn-primary form-control" >Proponer</a>    
 @endcan
 

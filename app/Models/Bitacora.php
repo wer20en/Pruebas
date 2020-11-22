@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Bitacora extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['quien','que'];
+    protected $fillable = ['quien', 'accion', 'que'];
 }

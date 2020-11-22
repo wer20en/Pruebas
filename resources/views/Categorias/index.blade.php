@@ -36,7 +36,7 @@
 @forelse ($categorias as $categoria)
     <tr>
         <td>{{$categoria->nombre}}</td>
-        <td>#</td>
+        <td>{{$categoria->concesionados->count()}}</td>
         <td>
             <a href="/Categorias/{{$categoria->id}}/edit" class="btn btn-success">Editar</a>
             <a href="/Categorias/{{$categoria->id}}" class="btn btn-warning">Mostrar</a>

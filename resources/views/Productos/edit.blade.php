@@ -21,20 +21,24 @@
       <label>Nombre:</label>
      <input type="text" name="nombre" class="form-control" value="{{$producto->nombre}}">
     </div>
-      <div class="form-group">
+
+    <div class="form-group">
         <label>Descripcion: </label>
         <textarea class="form-control" name="descripcion" rows="3">{{$producto->descripcion}}</textarea>
+    </div>
+
+  @can('cambiarPrecio', $producto)
+    <div class="input-group">
+      <label >Precio:</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text">$</span>
       </div>
-      <div class="input-group">
-        <label >Precio:</label>
-        <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
-        </div>
-        <input type="text" name="precio" class="form-control" value="{{$producto->precio}}">
-        <div class="input-group-append">
-          <span class="input-group-text">.00</span>
-        </div>
+      <input type="text" name="precio" class="form-control" value="{{$producto->precio}}">
+      <div class="input-group-append">
+        <span class="input-group-text">.00</span>
       </div>
+    </div>
+  @endcan
   
       <div class="form-group">
           <label for="imagen">Imagen:</label>

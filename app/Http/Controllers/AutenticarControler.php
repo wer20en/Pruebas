@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Usuario;
+use App\Models\Categoria;
 
 
 class AutenticarControler extends Controller

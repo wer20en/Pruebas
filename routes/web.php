@@ -28,10 +28,7 @@ Route::get('autenticar', function() {
     return view('autenticar'); 
     //buscara el archivo 'autenticar.php' o 'autenticar.blade.php' dentro de resoureces/views
 });
-Route::get('tablero', function() {
-    return view('tablero'); 
-    //buscara el archivo 'tablero.php' o 'tablero.blade.php' dentro de resoureces/views/supervisor
-});
+Route::get('tablero','IncioControler@tablero');
 
 Route::post('validar'        , 'AutenticarControler@validar');
 Route::get('listar_por_categoria/{categoria_id}','ExploracionControler@listar_por');
