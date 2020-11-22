@@ -14,8 +14,9 @@
         @guest
           <p class="lead text-muted">Buscar.
             <div class="form-check form-check-inline">
-              <form action="" method="post">
-                  <input type="search" class="form-control" id="search-input" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox">
+              <form action="/busqueda" method="POST">
+                  @csrf
+                  <input type="search" class="form-control" name="cad" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox">
               </form>
             </div>
           </p>

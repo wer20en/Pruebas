@@ -13,4 +13,19 @@ class Categoria extends Model
     {
         return $this->hasMany('App\Models\Producto');
     }
+    public function concesionados()
+    {
+        return $this->hasMany('App\Models\Producto')->where('concesionado',1);
+    }
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+     //   'saved' => UserSaved::class,
+     //   'deleted' => UserDeleted::class,
+    ];
+
 }

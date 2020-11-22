@@ -47,10 +47,4 @@
     <div class="col"></div>
     <div class="col"></div>
 </div>
-@if (!is_null($producto->concesionado) && $producto->concesionado==0)
-<div class="alert alert-danger" role="alert">
-  Motivo por el cual no fue aceptado: {{$producto->motivo}}
-</div>
-@endif
-
 @endsection 

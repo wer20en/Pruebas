@@ -41,7 +41,7 @@ class ProductoPolicy
      */
     public function create(Usuario $usuario)
     {
-        //
+        return $usuario->rol == "Cliente";
     }
 
     /**

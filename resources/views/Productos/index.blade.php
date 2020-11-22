@@ -26,7 +26,11 @@
     </div>
 @endif
 
-<a href="Productos/create" class="btn btn-primary form-control" >Proponer</a>
+@can('create', App\Models\Producto::class)
+{{-- @can('create', 'App\Models\Producto') --}}
+   <a href="Productos/create" class="btn btn-primary form-control" >Proponer</a>    
+@endcan
+
 <table border="1" class="table table-striped">
 <thead class="thead-dark">
         <th>Producto</th>
@@ -35,11 +39,18 @@
 </thead>
 <tbody class="thead-light">
     @forelse ($productos as $producto)
-        <tr @if ($producto->concesionado!=1)
-            class="text-muted"
-        @endif>
+        <tr @if (is_null($producto->concesionado))
+                class="bg-dark text-white"            
+            @else
+                @if ($producto->concesionado==0)
+                    class="text-warning" 
+                @else
+                    class="text-success"                
+                @endif
+            @endif
+        >
             <td>{{$producto->nombre}} <img src="/prods/{{$producto->imagen}}" width="50" ></td>
-            <td>{{$producto->precio}}</td>
+            <td style="text-align:right">$ {{$producto->precio}}</td>
             <td>
                 <a href="/Productos/{{$producto->id}}/edit" class="btn btn-success">Editar</a>
                 <a href="/Productos/{{$producto->id}}" class="btn btn-warning">Mostrar</a>
@@ -58,5 +69,21 @@
         </tr>
     @endforelse
 </tbody> 
+</table>
+
+<table border="1">
+    <tr>
+        <td>NOMENCLATURA</td>
+    </tr>
+    
+    <tr class="bg-dark text-white">
+        <td>producto nuevo que fue propuesto pero no ha sido revisado</td>
+    </tr>
+    <tr class="text-warning">
+        <td>Producto que fue rechazado, pero tiene observaciones</td>
+    </tr>
+    <tr class="text-success">
+        <td>Prodcuto que fue aceptado.</td>
+    </tr>
 </table>
 @endsection

@@ -19,9 +19,10 @@
           @guest
           <p class="lead text-muted">Buscar.
               <div class="form-check form-check-inline">
-                  <form action="" method="post">
-                      <input type="search" class="form-control" id="search-input" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox">
-                  </form>
+                <form action="/busqueda" method="POST">
+                  @csrf
+                  <input type="search" class="form-control" name="cad" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox" value="{{$cad}}">
+                </form>
               </div>          
           </p>
           @endguest
@@ -35,10 +36,10 @@
 <div class="py-4 bg-light" >
   <div class="container">
     <div class="row">
-        <h1>Categoria: {{$categoria->nombre}}</h1>
+        <h1>{{$mensaje}}</h1>
     </div>
     <div class="row">
-    @forelse ($categoria->productos as $producto)
+    @forelse ($productos as $producto)
       <div class="col-md-4 p-3">
         <div class="card box-shadow">
           <img class="card-img-top" src="/prods/{{$producto->imagen}}" >
@@ -49,9 +50,9 @@
               
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <a class="btn btn-lg btn-outline-secondary">Ver mas</a>   
+                <a class="btn btn-lg btn-outline-secondary" href="/Productos/{{$producto->id}}">Ver mas</a>   
                 @if (Gate::allows('comprar'))
-                  <a class="btn btn-lg btn-outline-success"  >Comprar</a>                                     
+                  <a class="btn btn-lg btn-outline-success"  href="/Comprar/{{$producto->id}}">Comprar</a>                                     
                 @endif
               </div>
             </div>
@@ -59,7 +60,7 @@
         </div>
       </div>
     @empty
-        Esta categoria no tiene productos.    
+      No hay productos para mostrar.    
     @endforelse
   </div>
   </div>

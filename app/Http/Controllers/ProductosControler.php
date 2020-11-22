@@ -112,6 +112,7 @@ class ProductosControler extends Controller
         }
         $valores['usuario_id']=Auth::id();
         $registro = Producto::find($id);
+        if($registro->concesionado==0)$registro->concesionado=null;
         $registro->fill($valores);
         $registro->save();
 

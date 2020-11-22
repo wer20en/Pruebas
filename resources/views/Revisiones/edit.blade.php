@@ -49,7 +49,7 @@
               <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
           @endforeach
         </select>
-    </div>
+    </div>  
     @if (!is_null($producto->concesionado) && $producto->concesionado==0)
     <div class="alert alert-danger" role="alert">
       Motivo por el cual no fue aceptado: {{$producto->motivo}}

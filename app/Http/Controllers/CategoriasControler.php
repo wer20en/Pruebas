@@ -117,9 +117,9 @@ class CategoriasControler extends Controller
         try {
             $registro = Categoria::find($id);
             $registro->delete();
-            return redirect("/Categoria")->with('mensaje','Categoria modificada correctamente');
+            return redirect("/Categorias")->with('mensaje','Categoria modificada correctamente');
         }catch (\Illuminate\Database\QueryException $e) {
-            return redirect("/Categoria")->with('error',$e->getMessage());
+            return redirect("/Categorias")->with('error',$e->getMessage());
         }
 
     }

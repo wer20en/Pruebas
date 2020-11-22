@@ -2,72 +2,87 @@
 @section('breadcumb')
 <li class="active">Dashboard</li>
 @endsection
-@section('menu')
-<li class="dropdown-item"><a class="text-success" href="/tablero">Dashboard</a></li>
-<li class="dropdown-item"><a href="/Categorias">Categorias</a></li>
-<li class="dropdown-item"><a href="/Usuarios">Usuarios</a></li>
-<li class="dropdown-item"><a href="charts.html">Charts</a></li>
-<li class="dropdown-item"><a href="elements.html">UI Elements</a></li>
-<li><a href="panels.html">Panels</a></li>
-<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-    <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
-    </a>
-    <ul class="children collapse" id="sub-item-1">
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
-        </a></li>
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-        </a></li>
-        <li><a class="" href="#">
-            <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
-        </a></li>
-    </ul>
-</li>
-<li><a href="login.html">Logout</a></li>
-@endsection
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Dashboard</h1>
-    </div>
-</div><!--/.row-->
 
-<div class="panel panel-container">
-    <div class="row">
-        <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-            <div class="panel panel-teal panel-widget border-right">
-                <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-blue"></em>
-                    <div class="large">120</div>
-                    <div class="text-muted">New Orders</div>
-                </div>
-            </div>
+@switch(Auth::user()->rol)
+    @case( 'Supervisor' )
+    <div class="card-columns">
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title that wraps to a new line</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
         </div>
-        <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-            <div class="panel panel-blue panel-widget border-right">
-                <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
-                    <div class="large">52</div>
-                    <div class="text-muted">Comments</div>
-                </div>
-            </div>
+        <div class="card p-3">
+          <blockquote class="blockquote mb-0 card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer>
+          </blockquote>
         </div>
-        <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-            <div class="panel panel-orange panel-widget border-right">
-                <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
-                    <div class="large">24</div>
-                    <div class="text-muted">New Users</div>
-                </div>
-            </div>
+        <div class="card">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
         </div>
-        <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
-            <div class="panel panel-red panel-widget ">
-                <div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
-                    <div class="large">25.2k</div>
-                    <div class="text-muted">Page Views</div>
-                </div>
-            </div>
+        <div class="card bg-primary text-white text-center p-3">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+            <footer class="blockquote-footer">
+              <small>
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer>
+          </blockquote>
         </div>
-    </div><!--/.row-->
-</div>
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="..." alt="Card image">
+        </div>
+        <div class="card p-3 text-right">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">
+              <small class="text-muted">
+                Someone famous in <cite title="Source Title">Source Title</cite>
+              </small>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+        </div>
+      </div>
+        @break
+    @case('Encargado')
+        dash del encargado
+        @break
+    @case('Contador')
+        dash del Contador    
+        @break
+    @case('Cliente')
+        dash del Cliente    
+        @break
+    
+@endswitch
+
+        
 
 @endsection

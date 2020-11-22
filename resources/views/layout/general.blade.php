@@ -84,9 +84,10 @@
           </div>
         </div>
         <div class="dropdown-divider"></div>
-        <div class="row">
-          <form>
-            <input type="search" class="form-control" id="criterio" placeholder="Buscar..." autocomplete="off" spellcheck="false" style="position: relative; vertical-align: top;">
+        <div class="row container-fluid">
+          <form action="/busqueda" method="POST">
+            @csrf
+            <input type="search" class="form-control" name="cad" placeholder="Buscar..."  autocomplete="off" spellcheck="false" role="combobox" value="@if (isset($cad)){{$cad}}@endif">
           </form>
         </div>
         <div class="dropdown-divider"></div>
@@ -103,7 +104,7 @@
               @break
             @case('Encargado')
               <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>
-              <li class="dropdown-item"><a href="#">Revisar</a></li>
+              <li class="dropdown-item"><a href="/Revisiones">Revisar</a></li>
               @break
             @case('Contador')
               <li class="dropdown-item"><a href="/tablero">Dashboard</a></li>

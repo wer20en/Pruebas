@@ -35,7 +35,7 @@ Route::get('tablero', function() {
 
 Route::post('validar'        , 'AutenticarControler@validar');
 Route::get('listar_por_categoria/{categoria_id}','ExploracionControler@listar_por');
-
+Route::post('busqueda','ExploracionControler@busqueda');
 
 
 Route::get('Categorias','CategoriasControler@index');
@@ -50,8 +50,7 @@ Route::resource('Usuarios','UsuariosControler');
 
 Route::resource('Productos','ProductosControler');
 
-
-
-
-
+Route::resource('Revisiones', 'RevisarControler', [
+    'only' => ['index', 'show', 'update']
+]);
 
