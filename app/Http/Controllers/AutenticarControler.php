@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UsuarioRegistrado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -45,6 +46,7 @@ class AutenticarControler extends Controller
         $registro->save();
 
         Auth::login($registro);
+        event(new UsuarioRegistrado($registro, $request->ip()));
         return  redirect('/tablero');
     }
     public function validar(Request $request)
