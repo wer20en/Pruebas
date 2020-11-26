@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class IncioControler extends Controller
 {
+    public function index(){
+        $categorias = Categoria::all();
+        return view('welcome',compact('categorias') );
+    }
     public function tablero(){
         switch (Auth::user()->rol) {
             case 'Supervisor':

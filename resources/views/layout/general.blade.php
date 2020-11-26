@@ -31,6 +31,10 @@
             <li>
               <a href="#" class="text-secondary">Buscanos en Facebook</a>
             </li>
+            
+            <li>
+              <a href="/registrar" class="text-info">Registrarse</a>
+            </li>
             <li>
               <a href="/autenticar" class="text-info">Iniciar sesion</a>
             </li>

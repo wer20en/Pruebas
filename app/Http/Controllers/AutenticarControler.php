@@ -12,6 +12,41 @@ use App\Models\Categoria;
 
 class AutenticarControler extends Controller
 {
+    public function autenticar(){
+        return view('autenticar'); 
+    }
+    public function registrar(){
+        return view('registrar'); 
+    }
+    public function salir(){
+        Auth::logout();
+        return redirect('/');
+    }
+    
+    public function agregar(Request $request)
+    {
+
+        $valores = $request->all();
+        if ($valores['password']!=$valores['password2'])
+            return redirect()->back()->with('error','El password no esta bien confirmado');
+
+        $imagen = $request->file('imagen');
+        if(!is_null($imagen)){
+            $ruta_destino = public_path('fotos/');
+            $nombre_de_archivo = $imagen->getClientOriginalName();
+            $imagen->move($ruta_destino, $nombre_de_archivo);        
+            $valores['imagen']=$nombre_de_archivo;
+        }
+        $valores['rol']="Cliente";
+        $valores['password']=Hash::make( $valores['password'] );
+
+        $registro = new Usuario();
+        $registro->fill($valores);
+        $registro->save();
+
+        Auth::login($registro);
+        return  redirect('/tablero');
+    }
     public function validar(Request $request)
     {
         $nombre   = $request->input('usuario');
