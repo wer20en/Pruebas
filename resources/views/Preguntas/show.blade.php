@@ -36,8 +36,7 @@
     <div class="col bg-light">{{$producto->propietario->nombre}}</div>
     <div class="col"></div>
     <div class="col"></div>
-</div>
-<div class="row">
+</div><div class="row">
     <div class="col">Categoria:</div>
     <div class="col bg-light">{{$producto->categoria[0]->nombre}}</div>
     <div class="col"></div>
@@ -54,18 +53,6 @@
 </div>
 @endif
 
-@forelse ($producto->preguntas as $pregunta)
-    <div class="alert alert-info" role="alert">
-        {{$pregunta->quien->nombre}} pregunto <small class="text-muted initialism">{{$pregunta->hora_p}}</small> : {{$pregunta->pregunta}}
-        <div class="alert alert-warning" role="alert">
-            This is a light alert—check it out!
-        </div>
-        
-    </div>    
-@empty
-    SIN PREGUNTAS
-@endforelse
-
 <div class="d-flex justify-content-between align-items-center">
     <div class="btn-group">
         @if (Gate::allows('comprar'))
@@ -76,8 +63,6 @@
         @endif
     </div>
 </div>
-
-
 
 
 

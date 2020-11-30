@@ -2,7 +2,7 @@
 
 
 @section('breadcumb')
-<li class="breadcrumb-item" ><a href="#">Home</a></li>
+<li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
 <li class="breadcrumb-item"><a href="/Productos">Productos</a></li>
 <li class="breadcrumb-item active" aria-current="page">Listar</li>
 @endsection

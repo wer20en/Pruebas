@@ -10,7 +10,7 @@ class ProductoPolicy
 {
     use HandlesAuthorization;
 
-    public function cambiarPrecio(Usuario $usuario, Producto $producto)
+    public function cambios(Usuario $usuario, Producto $producto)
     {
         return $producto->concesionado != 1;
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 
 use App\Events\UsuarioRegistrado;
 use App\Listeners\AuditarRegistro;
+use App\Listeners\CorreoRegistro;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         UsuarioRegistrado::class => [
             AuditarRegistro::class,
+            CorreoRegistro::class,
         ],
 
     ];

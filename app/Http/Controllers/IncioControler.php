@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Producto;
+use App\Models\Pregunta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +26,13 @@ class IncioControler extends Controller
                 $categorias = DB::table('categorias')->count();
                 return  view('tablero', compact('usuarios','clientes','empleados','productos','concesionados','categorias') );
                 break;
-            
+            case 'Encargado':
+                $propuestas = Producto::all()->whereNull('concesionado')->count();
+                $preguntas= Pregunta::all()->whereNull('p_autorizada')->count();
+                $respuestas= Pregunta::all()->whereNotNull('respuesta')->whereNull('r_autorizada')->count();
+                return  view('tablero', compact('propuestas','preguntas','respuestas') );
+                break;
+                        
             default:
                 return view('tablero');
                 break;

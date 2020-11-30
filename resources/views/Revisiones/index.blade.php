@@ -2,7 +2,7 @@
 
 
 @section('breadcumb')
-<li class="breadcrumb-item" ><a href="#">Home</a></li>
+<li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
 <li class="breadcrumb-item"><a href="/Revisiones">Revisiones</a></li>
 <li class="breadcrumb-item active" aria-current="page">Listar</li>
 @endsection
@@ -35,15 +35,15 @@
 <tbody class="thead-light">
     @forelse ($productos as $producto)
         <tr>
-            <td>{{$producto->nombre}}<img src="/prods/{{$producto->imagen}}" width="50" ></td>
+            <td>{{$producto->nombre}} <img src="/prods/{{$producto->imagen}}" width="50" ></td>
             <td style="text-align:right">$ {{$producto->precio}}</td>
             <td>
-                <a href="/Revisiones/{{$producto->id}}" class="btn btn-warning">Mostrar</a>
+                <a href="/Revisiones/{{$producto->id}}" class="btn btn-warning">Revisar</a>
             </td>
         </tr>
     @empty
         <tr>
-            <td colspan="3">Sin Revisiones para revisar</td>
+            <td colspan="3">Sin propuestas para revisar</td>
         </tr>
     @endforelse
 </tbody> 

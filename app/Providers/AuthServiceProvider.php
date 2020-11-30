@@ -29,6 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('comprar', function ($user) {
             return $user->rol == "Cliente";
         });
+        Gate::define('preguntar', function ($user) {
+            return $user->rol == "Cliente";
+        });
 
     }
 }

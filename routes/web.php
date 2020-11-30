@@ -45,3 +45,7 @@ Route::resource('Revisiones', 'RevisarControler', [
     'only' => ['index', 'show', 'update']
 ]);
 
+Route::resource('Preguntas', 'PreguntasControler', [
+    'except' => [ 'create', 'show' ]
+]);
+Route::get('Preguntas/create/{producto}','PreguntasControler@create');

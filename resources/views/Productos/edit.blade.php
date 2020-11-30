@@ -1,7 +1,7 @@
 @extends('layout.general')
 
 @section('breadcumb')
-<li class="breadcrumb-item" ><a href="#">Home</a></li>
+<li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
 <li class="breadcrumb-item"><a href="/Productos">Productos</a></li>
 <li class="breadcrumb-item active" aria-current="page">Editar</li>
 @endsection
@@ -22,12 +22,12 @@
      <input type="text" name="nombre" class="form-control" value="{{$producto->nombre}}">
     </div>
 
+  @can('cambios', $producto)
     <div class="form-group">
         <label>Descripcion: </label>
         <textarea class="form-control" name="descripcion" rows="3">{{$producto->descripcion}}</textarea>
     </div>
 
-  @can('cambiarPrecio', $producto)
     <div class="input-group">
       <label >Precio:</label>
       <div class="input-group-prepend">
@@ -38,7 +38,16 @@
         <span class="input-group-text">.00</span>
       </div>
     </div>
-  @endcan
+  @else
+    <div class="form-group">
+        Descripcion: {{$producto->descripcion}}
+    </div>
+
+    <div class="input-group">
+      Precio: ${{$producto->precio}}.00
+    </div>
+
+@endcan
   
       <div class="form-group">
           <label for="imagen">Imagen:</label>
