@@ -5,6 +5,8 @@ namespace App\Listeners;
 use App\Events\UsuarioRegistrado;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Mail\UnUsuarioRegistrado;
+use Illuminate\Support\Facades\Mail;
 
 class CorreoRegistro
 {
@@ -26,6 +28,6 @@ class CorreoRegistro
      */
     public function handle(UsuarioRegistrado $event)
     {
-        // Aqui mandaremos el correo de que alguien se registro
+        Mail::to('correo@destino.com')->send(new UnUsuarioRegistrado()); 
     }
 }
