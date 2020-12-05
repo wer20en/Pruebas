@@ -19,13 +19,34 @@ class PreguntasControler extends Controller
      */
     public function index()
     {
-//        $comentarios = DB::select('Select * from preguntas where p_autorizada IS NULL or r_autorizada IS NULL');
-        $comentarios = DB::select(" (select id, 'PREGUNTA' as tipo, pregunta as cuestion from preguntas where p_autorizada IS NULL)
-                                    UNION 
-                                    (select id, 'RESPUESTA' as tipo, respuesta as cuestion from preguntas where respuesta IS NOT NULL and r_autorizada IS NULL)");         
-//         $comentarios = Pregunta::whereIsNull('p_autorizada');
-        /*Aqui podemos hacer algunas cosas, como seleccionar que preguntas son los que cumplen cierta 
-        condicion y los listaremos por ejemplo*/
+        if (is_null(Auth::user())) die;
+        switch (Auth::user()->rol) {
+            case 'Encargado':
+                $query="(
+                    SELECT preguntas.id, imagen, 'PREGUNTA' as tipo, pregunta as cuestion 
+                    FROM preguntas JOIN productos ON preguntas.producto_id = productos.id 
+                    WHERE p_autorizada IS NULL
+                )UNION(
+                    SELECT preguntas.id, imagen, 'RESPUESTA' as tipo, respuesta as cuestion 
+                    FROM preguntas JOIN productos ON preguntas.producto_id = productos.id 
+                    WHERE respuesta IS NOT NULL and r_autorizada IS NULL
+                )";
+                break;
+
+            case 'Cliente':
+                $id= Auth::id();
+                $query="(
+                    SELECT preguntas.id, imagen, 'PREGUNTA' as tipo, pregunta as cuestion 
+                    FROM preguntas JOIN productos ON preguntas.producto_id = productos.id 
+                    WHERE p_autorizada IS NOT NULL and productos.usuario_id = $id
+                )UNION(
+                    SELECT preguntas.id, imagen, 'RESPUESTA' as tipo, respuesta as cuestion 
+                    FROM preguntas JOIN productos ON preguntas.producto_id = productos.id 
+                    WHERE respuesta IS NOT NULL and r_autorizada IS NULL and preguntas.quien_p = $id
+                )";
+                break;
+        }
+        $comentarios = DB::select($query);         
 
         return view('Preguntas.index',compact('comentarios'));
     }
@@ -33,7 +54,7 @@ class PreguntasControler extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create($id)
@@ -67,12 +88,18 @@ class PreguntasControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) //moderar
     {
         $pregunta = Pregunta::find($id);
         return view('Preguntas.edit',compact('pregunta'));
     }
-
+ 
+    public function show($id) //responder
+    {
+        $pregunta = Pregunta::find($id);
+        return view('Preguntas.responder',compact('pregunta'));
+    }
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -85,18 +112,19 @@ class PreguntasControler extends Controller
         $valores = $request->all();
 
         $registro = Pregunta::find($id);
-        if (is_null($registro->p_autorizada))
-            $valores['p_autorizada']= date('Y-m-d  H:i:s');
-        else 
-            $valores['r_autorizada']= date('Y-m-d  H:i:s');
+        if ($request->user()->rol == "Encargado")
+            if (is_null($registro->p_autorizada))
+                $valores['p_autorizada']= date('Y-m-d  H:i:s');
+            else 
+                $valores['r_autorizada']= date('Y-m-d  H:i:s');
+
+
         $registro->fill($valores);
         $registro->save();
 
-        return redirect("/Preguntas")->with('mensaje','Pregunta autorizada correctamente');
+        return redirect("/Preguntas")->with('mensaje','Cuestion actualizada correctamente');
 
     }
-   //    return;
-
     /**
      * Remove the specified resource from storage.
      *
@@ -115,4 +143,5 @@ class PreguntasControler extends Controller
         }
        
     }
+
 }

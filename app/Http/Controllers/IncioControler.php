@@ -16,6 +16,9 @@ class IncioControler extends Controller
         return view('welcome',compact('categorias') );
     }
     public function tablero(){
+        
+        if (is_null(Auth::user())) die;
+
         switch (Auth::user()->rol) {
             case 'Supervisor':
                 $usuarios = DB::table('usuarios')->count();
@@ -31,6 +34,14 @@ class IncioControler extends Controller
                 $preguntas= Pregunta::all()->whereNull('p_autorizada')->count();
                 $respuestas= Pregunta::all()->whereNotNull('respuesta')->whereNull('r_autorizada')->count();
                 return  view('tablero', compact('propuestas','preguntas','respuestas') );
+                break;
+            case 'Cliente':
+                $productos = DB::table('productos')->where('usuario_id',Auth::id())->count();
+                $concesionados = DB::select('SELECT count(*) as cuantos from productos where concesionado = 1 and usuario_id =' . Auth::id()  )[0]->cuantos;
+                $preguntas = DB::table('preguntas')->whereNotNull('p_autorizada')->whereNull('r_autorizada')
+                            ->whereIn('producto_id', DB::table('productos')->select('id')->where('usuario_id',Auth::id())->get()->pluck('id'))
+                            ->count();
+                return  view('tablero', compact('productos','concesionados','preguntas') );
                 break;
                         
             default:

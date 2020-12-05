@@ -60,9 +60,9 @@
           <img class="card-img-top" src="/prods/preguntas.png"  height="300" alt="Card image cap">
         </a>
           <div class="card-body">
-            <h5 class="card-title">Dudas5</h5>
+            <h5 class="card-title">Dudas</h5>
             <p class="card-text">
-              Preguntas por revisar: {{$preguntas ?? ''}}
+              Preguntas por revisar: {{$preguntas ?? '' ?? ''}}
             </p>
             <p class="card-text">
               Respuestas por revisar: {{$respuestas ?? ''}}
@@ -94,9 +94,12 @@
             <img class="card-img-top" src="/prods/preguntas.png"  height="300" alt="Card image cap">
           </a>
             <div class="card-body">
-              <h5 class="card-title">Dudas5</h5>
+              <h5 class="card-title">Dudas</h5>
               <p class="card-text">
                 Preguntas por contestar: {{$preguntas ?? ''}}
+              </p>
+              <p class="card-text">
+                Respuestas recibidas: {{$respuestas ?? ''}}
               </p>
             </div>
         </div>

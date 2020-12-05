@@ -1,14 +1,10 @@
 @extends('layout.general')
-
 @section('breadcumb')
 <li class="breadcrumb-item" ><a href="/tablero">Tablero</a></li>
 <li class="breadcrumb-item"><a href="/Preguntas">Preguntas</a></li>
-<li class="breadcrumb-item active">Proponer</li>
+<li class="breadcrumb-item active">Preguntar</li>
 @endsection
-
-
 @section('content')
-
 <form action="/Preguntas" method="post" enctype="multipart/form-data" >
   @csrf
   <div class="row">
@@ -26,11 +22,8 @@
 <input type="hidden" name="producto_id" value="{{$producto->id}}">
 <div class="form-group">
   <label>Pregunta:</label>
-  <textarea name="pregunta" class="form-control" rows="10"></textarea>
+  <textarea name="pregunta" class="form-control" rows="2"></textarea>
 </div>
 <input type="submit" class="btn btn-primary" value="Preguntar">
 </form>
-
-  
-
 @endsection

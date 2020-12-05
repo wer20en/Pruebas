@@ -27,12 +27,6 @@
 @endif
 
 
-<a href="/Preguntas/create/2" class="btn btn-primary form-control" >Preguntar</a>    
-
-{{-- @can('create', App\Models\Producto::class)
-   <a href="Preguntas/create" class="btn btn-primary form-control" >Proponer</a>    
-@endcan --}}
-
 <table border="1" class="table table-striped">
 <thead class="thead-dark">
         <th>Producto</th>
@@ -50,27 +44,33 @@
             @endif
         >
             <td>
-                 {{-- <img src="/prods/{{$comentario->producto->imagen}}" width="50" >  --}}
+                 <img src="/prods/{{$comentario->imagen}}" width="50" >
             </td>
             <td>
                 {{$comentario->tipo}}:{{$comentario->cuestion}}
                          
             </td>
             <td>
+                @can('moderar', App\Models\Pregunta::class)
                 <a href="/Preguntas/{{$comentario->id}}/edit" class="btn btn-success">Moderar</a>
+                @endcan
+
+                @can('responder', App\Models\Pregunta::find($comentario->id))
+                <a href="/Preguntas/{{$comentario->id}}" class="btn btn-success">Responder</a>
+                @endcan
              
-                {{-- @can('delete', $comentario) --}}
+                @can('delete', App\Models\Pregunta::class)
                 <form action="/Preguntas/{{$comentario->id}}" method="post" style="display: inline;"  onsubmit="return confirm('Desea eliminar');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
-                {{-- @endcan --}}
+                @endcan
             </td>
         </tr>
     @empty
         <tr>
-            <td colspan="3">Sin Preguntas registradas</td>
+            <td colspan="3">Sin comentarios registradas</td>
         </tr>
     @endforelse
  </tbody> 

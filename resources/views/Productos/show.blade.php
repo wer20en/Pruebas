@@ -55,31 +55,30 @@
 @endif
 
 @forelse ($producto->preguntas as $pregunta)
-    <div class="alert alert-info" role="alert">
-        {{$pregunta->quien->nombre}} pregunto <small class="text-muted initialism">{{$pregunta->hora_p}}</small> : {{$pregunta->pregunta}}
-        <div class="alert alert-warning" role="alert">
-            This is a light alert—check it out!
-        </div>
-        
-    </div>    
+{{" "}}
+    @if (!is_null($pregunta->p_autorizada))    
+        <div class="alert alert-info" role="alert">
+            {{$pregunta->quien->nombre}} pregunto <small class="text-muted initialism">{{$pregunta->hora_p}}</small> : {{$pregunta->pregunta}}
+            @if (!is_null($pregunta->r_autorizada))
+                <div class="alert alert-warning" role="alert">
+                    {{$pregunta->respuesta}}
+                </div>
+            @endif
+        </div>    
+    @endif
 @empty
-    SIN PREGUNTAS
+    Se el primero en preguntar....
 @endforelse
 
 <div class="d-flex justify-content-between align-items-center">
     <div class="btn-group">
-        @if (Gate::allows('comprar'))
+        @if (Gate::allows('comprar',$producto))
             <a class="btn btn-lg btn-outline-success"  href="/Comprar/{{$producto->id}}">Comprar</a>                                     
         @endif
-        @if (Gate::allows('preguntar'))
+
+        @if (Gate::allows('preguntar',$producto))
             <a class="btn btn-lg btn-outline-success"  href="/Preguntar/{{$producto->id}}">Preguntar</a>                                     
         @endif
     </div>
 </div>
-
-
-
-
-
-
 @endsection 

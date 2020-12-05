@@ -10,6 +10,12 @@ class ProductoPolicy
 {
     use HandlesAuthorization;
 
+    public function preguntar(Usuario $usuario, Producto $producto)
+    {
+        return $usuario->rol == "Cliente" && $producto->usuario_id != $usuario->id;
+    }
+    
+
     public function cambios(Usuario $usuario, Producto $producto)
     {
         return $producto->concesionado != 1;
