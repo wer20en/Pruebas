@@ -47,8 +47,7 @@
                  <img src="/prods/{{$comentario->imagen}}" width="50" >
             </td>
             <td>
-                {{$comentario->tipo}}:{{$comentario->cuestion}}
-                         
+                {{$comentario->tipo}}:{{$comentario->cuestion}}                
             </td>
             <td>
                 @can('moderar', App\Models\Pregunta::class)
@@ -75,5 +74,4 @@
     @endforelse
  </tbody> 
 </table>
-
 @endsection

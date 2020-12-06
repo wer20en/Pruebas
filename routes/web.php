@@ -14,16 +14,13 @@ use App\Models\Categoria;
 */
 Route::get('/','IncioControler@index');
 Route::get('tablero','IncioControler@tablero');
-
 Route::get('salir'        , 'AutenticarControler@salir');
 Route::get('autenticar'        , 'AutenticarControler@autenticar');
 Route::get('registrar'        , 'AutenticarControler@registrar');
 Route::post('agregar'        , 'AutenticarControler@agregar');
 Route::post('validar'        , 'AutenticarControler@validar');
-
 Route::get('listar_por_categoria/{categoria_id}','ExploracionControler@listar_por');
 Route::post('busqueda','ExploracionControler@busqueda');
-
 Route::get('Categorias','CategoriasControler@index');
 Route::post('Categorias','CategoriasControler@store');
 Route::get('Categorias/create','CategoriasControler@create');
@@ -31,13 +28,11 @@ Route::get('Categorias/{categoria}','CategoriasControler@show');
 Route::put('Categorias/{categoria}','CategoriasControler@update');
 Route::delete('Categorias/{categoria}','CategoriasControler@destroy');
 Route::get('Categorias/{categoria}/edit','CategoriasControler@edit');
-
 Route::resource('Usuarios','UsuariosControler');
 Route::resource('Productos','ProductosControler');
 Route::resource('Revisiones', 'RevisarControler', [
     'only' => ['index', 'show', 'update']
 ]);
-
 Route::resource('Preguntas', 'PreguntasControler', [
     'except' => [ 'create' ]
 ]);

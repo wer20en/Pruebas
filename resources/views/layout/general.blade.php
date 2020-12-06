@@ -71,7 +71,7 @@
             <div class="dropdown-menu" aria-labelledby="notificaciones">
               <a class="dropdown-item" href="/Preguntas">preguntas sin contestar <span class="badge badge-light">{{Auth::user()->preguntas_sin()->count()}}</span></a>
               
-              <a class="dropdown-item" href="/Preguntas">Respuestas reibidas <span class="badge badge-light">{{""}}</span></a>
+              <a class="dropdown-item" href="/Preguntas">Respuestas reibidas <span class="badge badge-light">{{Auth::user()->respuetas_recibidas()->count()}}</span></a>
             </div>
           </li>
           <li class="nav-item dropdown">          
