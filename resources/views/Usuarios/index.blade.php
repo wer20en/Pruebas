@@ -35,9 +35,9 @@
 </thead>
 <tbody class="thead-light">
     @forelse ($usuarios as $usuario)
-        <tr>
+        <tr id="{{$usuario->id}}">
             <td>{{$usuario->nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_paterno}}</td>
-            <td>{{$usuario->rol}}</td>
+            <td class="tipo" data-original="{{$usuario->rol}}">{{$usuario->rol}}</td>
             <td>
                 <a href="/Usuarios/{{$usuario->id}}/edit" class="btn btn-success">Editar</a>
                 <a href="/Usuarios/{{$usuario->id}}" class="btn btn-warning">Mostrar</a>
@@ -55,4 +55,65 @@
     @endforelse
 </tbody> 
 </table>
+@endsection
+
+@section('escripts')
+<script>
+var mostrandoInput = false;
+$().ready( function(){
+    $(".tipo").dblclick(function() {
+        if (mostrandoInput) return;
+        original = this.innerText;
+        var opciones = '<select name="rol" data="">';
+            if (original == "Supervisor")
+                opciones+='    <option selected>Supervisor</option>';
+            else
+                opciones+='    <option>Supervisor</option>';
+
+            if (original == "Encargado")
+                opciones+='    <option selected>Encargado</option>';
+            else
+                opciones+='    <option>Encargado</option>';
+
+            if (original == "Contador")
+                opciones+='    <option selected>Contador</option>';
+            else
+                opciones+='    <option>Contador</option>';
+
+            if (original == "Cliente")
+                opciones+='    <option selected>Cliente</option>';
+            else
+                opciones+='    <option>Cliente</option>';
+            opciones+='</select>';
+            this.innerHTML = opciones;
+            mostrandoInput = true;
+    });
+
+    $(".tipo").keydown(function( event ) {
+        if ( event.which == 27 ) {
+            this.innerText = this.dataset["original"];
+            mostrandoInput = false;
+       }
+        if ( event.which == 13 ) {
+            var rol = this.children[0].value;
+            this.innerText = "";
+            axios.put('/_Usuarios/' + this.parentElement.id  , {
+                _token: '{{ csrf_token() }}',
+                rol: rol ,
+            })
+            .then(function (response) {                
+                td = $("tr#" + response.data.id + ">td.tipo").text(response.data.rol);
+                //.text(response.data.equipo);
+                console.log(response);
+            })
+            .catch(function (error) {
+                if(error.response.status==401)alert("Usted no ha iniciado en el sistema");
+                if(error.response.status==500)alert(error.response.data.message);
+                else alert(error.response.data.error);
+                console.log(error);
+            });
+        }
+    });
+} );
+</script>
 @endsection

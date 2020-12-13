@@ -102,12 +102,15 @@ class UsuariosControler extends Controller
     public function update(Request $request, $id)
     {
         $valores = $request->all();
-        if ($valores['password']!=$valores['password2'])
-            return redirect()->back()->with('error','El password no esta bien confirmado');
+
+        if(isset($valores['password2']))
+            if ($valores['password']!=$valores['password2'])
+                return redirect()->back()->with('error','El password no esta bien confirmado');
     
 
+        if(isset($valores['password']))
         //si el password esta en blanco no lo actualizaremos
-        if(is_null($valores['password']))
+        if( is_null($valores['password']))
             unset($valores['password']);
         else
             $valores['password']=Hash::make( $valores['password'] );
